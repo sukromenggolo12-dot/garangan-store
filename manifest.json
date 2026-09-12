@@ -1,0 +1,42 @@
+{
+  "name": "Garangan Store — 3D Printing, Filament & Fotocopy",
+  "short_name": "Garangan Store",
+  "description": "Destinasi utama untuk 3D printing, filamen premium, dan layanan fotocopy digital. Dari Kertas Sampai 3D.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f0e8",
+  "theme_color": "#8b2500",
+  "lang": "id",
+  "categories": ["shopping", "business", "technology"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Katalog Produk",
+      "short_name": "Katalog",
+      "url": "./index.html#sec-products",
+      "description": "Lihat produk Garangan Store"
+    },
+    {
+      "name": "Hubungi Kami",
+      "short_name": "Kontak",
+      "url": "https://wa.me/6281234567890",
+      "description": "Chat WhatsApp Garangan Store"
+    }
+  ]
+}

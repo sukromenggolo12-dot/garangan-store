@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garangan Magazine — 3D Printing, Filament & Fotocopy</title>
+<meta name="description" content="Garangan Store — destinasi utama 3D printing, filamen premium, dan layanan fotocopy digital. Dari Kertas Sampai 3D.">
+<meta name="keywords" content="3D printing, filament, fotocopy, Garangan Store, printer 3D, PLA, PETG, percetakan, malang">
+<meta name="theme-color" content="#8b2500">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Garangan Store">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --paper: #f5f0e8;
+  --ink: #1a1a18;
+  --ink-light: #3d3a33;
+  --accent: #8b2500;
+  --accent2: #2d4a22;
+  --rule: #c4b99a;
+  --sepia-overlay: rgba(112, 66, 20, 0.06);
+  --col-gap: 2rem;
+  --page-pad: clamp(1.5rem, 4vw, 4rem);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) var(--paper);
+}
+
+body {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.65;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== PAPER TEXTURE ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(139,37,0,0.03) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(45,74,34,0.03) 0%, transparent 60%);
+}
+
+/* ===== PAGE WRAPPER / TRANSITIONS ===== */
+.page {
+  min-height: 100vh;
+  padding: var(--page-pad);
+  position: relative;
+  opacity: 0;
+  transform: translateX(60px) rotateY(-2deg);
+  transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.page.visible {
+  opacity: 1;
+  transform: translateX(0) rotateY(0);
+}
+
+.page::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 60px; height: 100%;
+  background: linear-gradient(to left, rgba(0,0,0,0.04), transparent);
+  pointer-events: none;
+}
+
+/* ===== MASTHEAD ===== */
+.masthead {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  border-bottom: 4px double var(--ink);
+  position: relative;
+}
+
+.masthead__logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--ink);
+  position: relative;
+  display: inline-block;
+}
+
+.masthead__logo span {
+  color: var(--accent);
+}
+
+.masthead__tagline {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  color: var(--ink-light);
+}
+
+.masthead__issue {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.2rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+/* ===== TOC / NAVIGATION ===== */
+.toc {
+  padding: 3rem 0;
+  border-bottom: 2px solid var(--ink);
+}
+
+.toc__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  color: var(--accent);
+}
+
+.toc__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 3rem;
+}
+
+.toc__item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dotted var(--rule);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.toc__item:hover {
+  padding-left: 0.5rem;
+  background: rgba(139,37,0,0.04);
+}
+
+.toc__num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--accent);
+  min-width: 2.5rem;
+  transition: font-size 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s ease;
+  display: inline-block;
+  line-height: 1;
+}
+
+.toc__item:hover .toc__num {
+  font-size: 2.4rem;
+  transform: translateY(-2px);
+}
+
+.toc__label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.toc__page {
+  margin-left: auto;
+  font-size: 0.65rem;
+  color: var(--ink-light);
+  letter-spacing: 0.1em;
+}
+
+/* ===== SECTION PAGES ===== */
+.section {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.section__header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--ink);
+}
+
+.section__num {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  opacity: 0.2;
+}
+
+.section__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ===== HERO / HEADLINE (OFFSET OVERFLOW) ===== */
+.hero {
+  position: relative;
+  margin: 3rem 0;
+  overflow: visible;
+}
+
+.hero__headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  margin-left: calc(-1 * var(--page-pad) - 2vw);
+  padding-left: calc(var(--page-pad) + 2vw);
+  position: relative;
+  color: var(--ink);
+}
+
+.hero__headline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--accent);
+}
+
+.hero__deck {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  margin-top: 1.5rem;
+  max-width: 60%;
+  color: var(--ink-light);
+  line-height: 1.5;
+}
+
+/* ===== MULTI-COLUMN GRID ===== */
+.grid {
+  display: grid;
+  gap: var(--col-gap);
+  margin: 2rem 0;
+}
+
+.grid--2-1 {
+  grid-template-columns: 2fr 1fr;
+}
+
+.grid--1-2 {
+  grid-template-columns: 1fr 2fr;
+}
+
+.grid--3 {
+  grid-template-columns: 1fr 1.4fr 0.8fr;
+}
+
+.grid--2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid--1-1-1 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.col-text {
+  columns: 2;
+  column-gap: 1.5rem;
+  column-rule: 1px solid var(--rule);
+}
+
+.col-text p {
+  margin-bottom: 0.8rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ===== ARTICLE CARDS ===== */
+.article {
+  position: relative;
+  padding: 1.5rem 0;
+}
+
+.article--bordered {
+  border-top: 2px solid var(--ink);
+  padding-top: 1.5rem;
+}
+
+.article__category {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.article__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+
+.article__title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.article__title a:hover {
+  color: var(--accent);
+}
+
+.article__excerpt {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--ink-light);
+  margin-bottom: 0.8rem;
+}
+
+.article__meta {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rule);
+}
+
+/* ===== IMAGES (SEPIA + NOISE) ===== */
+.img-wrap {
+  position: relative;
+  overflow: hidden;
+  margin: 1rem 0;
+  line-height: 0;
+}
+
+.img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: sepia(0.2) contrast(1.05) brightness(0.97);
+  transition: filter 0.5s ease;
+}
+
+.img-wrap:hover img {
+  filter: sepia(0.05) contrast(1.08) brightness(1);
+}
+
+/* noise overlay on images */
+.img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.12'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.img-caption {
+  font-size: 0.65rem;
+  font-style: italic;
+  color: var(--ink-light);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+}
+
+/* ===== PULL QUOTE ===== */
+.pull-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  line-height: 1.4;
+  padding: 2rem 0;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  margin: 2rem 0;
+  position: relative;
+}
+
+.pull-quote::before {
+  content: '"';
+  font-size: 5rem;
+  position: absolute;
+  top: 0.5rem;
+  left: -0.3rem;
+  color: var(--accent);
+  opacity: 0.2;
+  font-style: normal;
+  line-height: 1;
+}
+
+.pull-quote cite {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-style: normal;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  color: var(--ink-light);
+}
+
+/* ===== SIDEBAR / INSET ===== */
+.sidebar {
+  background: rgba(0,0,0,0.03);
+  border: 1px solid var(--rule);
+  padding: 1.5rem;
+  font-size: 0.78rem;
+}
+
+.sidebar__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dotted var(--rule);
+  line-height: 1.4;
+}
+
+.sidebar li strong {
+  font-weight: 600;
+  display: block;
+  font-size: 0.72rem;
+}
+
+/* ===== DIVIDERS ===== */
+.divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2rem 0;
+}
+
+.divider--thick {
+  border-top-width: 3px;
+  border-color: var(--ink);
+}
+
+.divider--double {
+  border-top: 3px double var(--ink);
+}
+
+/* ===== PRODUCT SHOWCASE ===== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.product-card {
+  border: 1px solid var(--rule);
+  padding: 1.2rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: translate(-2px, -2px);
+}
+
+.product-card__name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.product-card__desc {
+  font-size: 0.72rem;
+  color: var(--ink-light);
+  margin-bottom: 0.6rem;
+}
+
+.product-card__price {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+/* ===== AD BANNER ===== */
+.ad-banner {
+  border: 3px solid var(--ink);
+  padding: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+  position: relative;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0,0,0,0.015) 10px,
+    rgba(0,0,0,0.015) 20px
+  );
+}
+
+.ad-banner__label {
+  position: absolute;
+  top: -0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--paper);
+  padding: 0 0.8rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.ad-banner__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ad-banner__sub {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+/* ===== FOOTER (MAGAZINE COPYRIGHT) ===== */
+.footer {
+  padding: 4rem var(--page-pad) 3rem;
+  border-top: 4px double var(--ink);
+  margin-top: 3rem;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer__col-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.footer p, footer li {
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: var(--ink-light);
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer li { margin-bottom: 0.3rem; }
+
+.footer__legal {
+  border-top: 1px solid var(--rule);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer__legal p {
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  color: var(--rule);
+  line-height: 1.8;
+}
+
+.footer__issn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--ink-light);
+}
+
+/* ===== PAGE NUMBERS ===== */
+.page-num {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-light);
+}
+
+.page-num::before,
+.page-num::after {
+  content: '—';
+  margin: 0 0.8rem;
+  color: var(--rule);
+}
+
+/* ===== SCROLL PROGRESS ===== */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: var(--accent);
+  z-index: 10000;
+  transition: width 0.1s linear;
+  width: 0%;
+}
+
+/* ===== PAGE TURN ANIMATION ===== */
+@keyframes pageTurnIn {
+  0% { opacity: 0; transform: perspective(1200px) rotateY(-8deg) translateX(80px); }
+  100% { opacity: 1; transform: perspective(1200px) rotateY(0) translateX(0); }
+}
+
+.page.turn-in {
+  animation: pageTurnIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .grid--2-1, .grid--1-2, .grid--3, .grid--2, .grid--1-1-1 {
+    grid-template-columns: 1fr;
+  }
+  .toc__list { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; }
+  .col-text { columns: 1; }
+  .hero__headline { margin-left: -1rem; padding-left: 1.5rem; font-size: 2.5rem; }
+  .hero__deck { max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .masthead__issue { flex-direction: column; gap: 0.3rem; text-align: center; }
+  .product-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ==================== PAGE 1: COVER ==================== -->
+<div class="page visible" id="cover">
+  <header class="masthead">
+    <div class="masthead__logo">G<span>A</span>RANGAN</div>
+    <div class="masthead__tagline">3D Printing &nbsp;·&nbsp; Filament &nbsp;·&nbsp; Fotocopy</div>
+    <div class="masthead__issue">
+      <span>Vol. IX &nbsp; No. 09</span>
+      <span>September 2026</span>
+      <span>Rp 45.000</span>
+    </div>
+  </header>
+
+  <!-- TABLE OF CONTENTS -->
+  <nav class="toc" id="toc">
+    <div class="toc__title">Daftar Isi — Contents</div>
+    <ol class="toc__list">
+      <a href="#sec-tech" class="toc__item">
+        <span class="toc__num">01</span>
+        <span class="toc__label">Revolusi Printer 3D Rumahan 2026</span>
+        <span class="toc__page">p. 02</span>
+      </a>
+      <a href="#sec-filament" class="toc__item">
+        <span class="toc__num">02</span>
+        <span class="toc__label">Filamen Premium: Panduan Lengkap</span>
+        <span class="toc__page">p. 04</span>
+      </a>
+      <a href="#sec-copy" class="toc__item">
+        <span class="toc__num">03</span>
+        <span class="toc__label">Fotocopy Digital & Percetakan On-Demand</span>
+        <span class="toc__page">p. 06</span>
+      </a>
+      <a href="#sec-products" class="toc__item">
+        <span class="toc__num">04</span>
+        <span class="toc__label">Katalog Produk Garangan Store</span>
+        <span class="toc__page">p. 08</span>
+      </a>
+      <a href="#sec-tutorial" class="toc__item">
+        <span class="toc__num">05</span>
+        <span class="toc__label">Tutorial: Setup Printer 3D Pertama Anda</span>
+        <span class="toc__page">p. 10</span>
+      </a>
+      <a href="#sec-community" class="toc__item">
+        <span class="toc__num">06</span>
+        <span class="toc__label">Komunitas & Kolaborasi Maker Lokal</span>
+        <span class="toc__page">p. 12</span>
+      </a>
+    </ol>
+  </nav>
+  <div class="page-num">01</div>
+</div>
+
+<!-- ==================== PAGE 2: 3D PRINTING REVOLUTION ==================== -->
+<div class="page" id="sec-tech">
+  <div class="section">
+    <div class="section__header">
+      <span class="section__num">01</span>
+      <h2 class="section__title">Revolusi Printer 3D Rumahan</h2>
+    </div>
+
+    <div class="hero">
+      <h1 class="hero__headline">Mesin Cetak Masa Depan Kini Ada di Meja Kerja Anda</h1>
+      <p class="hero__deck">Dari prototipe industri hingga aksesori harian — printer 3D telah berubah dari mimpi futuristik menjadi perangkat wajib di bengkel modern.</p>
+    </div>
+
+    <div class="grid grid--2-1">
+      <div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80" alt="3D Printer in action" loading="lazy">
+        </div>
+        <p class="img-caption">Proses pencetakan FDM pada printer Creality K1 Max — salah satu model terlaris di Garangan Store, September 2026.</p>
+
+        <hr class="divider">
+
+        <div class="col-text">
+          <p>Tahun 2026 menandai titik balik bagi industri pencetakan 3D konsumen. Dengan harga printer tingkat pemula yang kini di bawah Rp 3 juta, teknologi yang dulunya eksklusif ini telah merambah ke rumah tangga, sekolah, dan UMKM di seluruh Indonesia.</p>
+          <p>Garangan Store, yang berpusat di jantung kota, menyaksikan lonjakan permintaan hingga 340% dibanding tahun lalu. "Bukan hanya maker dan hobiis," kata tim Garangan. "Kami melihat arsitek, dokter gigi, bahkan ibu rumah tangga yang mencetak peralatan dapur custom."</p>
+          <p>Teknologi FDM (Fused Deposition Modeling) tetap menjadi raja untuk pengguna rumahan berkat keseimbangan antara harga dan kualitas. Namun, resin printer (SLA/MSLA) mulai menarik perhatian berkat hasil yang lebih halus untuk miniatur dan perhiasan.</p>
+          <p>Salah satu terobosan terbesar tahun ini adalah integrasi AI dalam slicer software. Printer kini dapat memprediksi dan mencegah kegagalan cetak secara real-time, menghemat waktu dan material hingga 25%.</p>
+          <p>Di Garangan Store, setiap pembelian printer sudah termasuk sesi setup gratis dan akses ke komunitas online beranggotakan 2.000+ maker aktif. "Kami bukan sekadar toko," tegas mereka. "Kami adalah ekosistem."</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar">
+          <div class="sidebar__title">Fakta Cepat</div>
+          <ul>
+            <li><strong>340%</strong> — Lonjakan penjualan printer 3D rumahan di Garangan Store YoY</li>
+            <li><strong>Rp 2.8 Juta</strong> — Harga entry-level printer FDM terpopuler</li>
+            <li><strong>25%</strong> — Penghematan material berkat AI slicer</li>
+            <li><strong>2.000+</strong> — Anggota aktif komunitas Garangan</li>
+            <li><strong>47%</strong> — Pengguna baru dari sektor non-teknis</li>
+          </ul>
+        </div>
+
+        <div class="pull-quote" style="margin-top: 2rem;">
+          Printer 3D bukan lagi tentang mencetak plastik — ini tentang mencetak kemungkinan.
+          <cite>— Tim Garangan Store</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">02</div>
+</div>
+
+<!-- ==================== PAGE 3: FILAMENT ==================== -->
+<div class="page" id="sec-filament">
+  <div class="section">
+    <div class="section__header">
+      <span class="section__num">02</span>
+      <h2 class="section__title">Filamen Premium: Panduan Lengkap</h2>
+    </div>
+
+    <div class="grid grid--3">
+      <div class="article article--bordered">
+        <div class="article__category">Material</div>
+        <h3 class="article__title"><a href="#">PLA: Serba Guna untuk Pemula</a></h3>
+        <div class="article__excerpt">
+          Polylactic Acid tetap menjadi pilihan utama berkat kemudahan pencetakan dan harga terjangkau. Tersedia dalam 40+ warna di Garangan Store dengan toleransi diameter ±0.02mm.
+        </div>
+        <div class="article__meta">Suhu: 190–220°C &nbsp;·&nbsp; Bed: 50–60°C</div>
+      </div>
+
+      <div class="article article--bordered">
+        <div class="article__category">Material</div>
+        <h3 class="article__title"><a href="#">PETG: Kekuatan Industrial</a></h3>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?w=600&q=80" alt="Filament spools" loading="lazy">
+        </div>
+        <div class="article__excerpt">
+          Menggabungkan kemudahan PLA dengan ketahanan ABS. Ideal untuk fungsional parts yang butuh fleksibilitas dan daya tahan. Anti-lembab, cocok untuk iklim tropis Indonesia.
+        </div>
+        <div class="article__meta">Suhu: 230–250°C &nbsp;·&nbsp; Bed: 70–80°C</div>
+      </div>
+
+      <div>
+        <div class="sidebar">
+          <div class="sidebar__title">Rekomendasi Garangan</div>
+          <ul>
+            <li>
+              <strong>PLA Matte</strong>
+              Hasil akhir tanpa kilau, sempurna untuk display & arsitektur
+            </li>
+            <li>
+              <strong>TPU 95A</strong>
+              Filamen fleksibel untuk case HP, sol sepatu, gasket
+            </li>
+            <li>
+              <strong>Wood Fill PLA</strong>
+              30% serbuk kayu, bisa diampelas dan dicat
+            </li>
+            <li>
+              <strong>Carbon Fiber PLA</strong>
+              Ringan & kaku, cocok untuk drone parts
+            </li>
+            <li>
+              <strong>Glow in the Dark</strong>
+              Fosfor berpendar, favorit anak-anak
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--double">
+
+    <div class="grid grid--2">
+      <div class="article">
+        <div class="article__category">Tips & Trik</div>
+        <h3 class="article__title"><a href="#">Menyimpan Filamen Agar Tetap Kering</a></h3>
+        <div class="article__excerpt">
+          Kelembaban adalah musuh utama filamen. Gunakan dry box atau vacuum seal dengan silica gel. Garangan Store menyediakan dry box khusus dengan indikator kelembaban real-time. Simpan di bawah 15% RH untuk hasil cetak optimal.
+        </div>
+      </div>
+      <div class="article">
+        <div class="article__category">Review</div>
+        <h3 class="article__title"><a href="#">Head-to-Head: PLA Lokal vs Import</a></h3>
+        <div class="article__excerpt">
+          Kami menguji 5 merek filamen lokal dan 3 merek import. Hasilnya mengejutkan — filamen produksi lokal kini setara kualitasnya, dengan harga 30-40% lebih murah. Garangan Store sendiri mengkurasi filamen lokal terbaik untuk pelanggannya.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">04</div>
+</div>
+
+<!-- ==================== PAGE 4: FOTOCOPY ==================== -->
+<div class="page" id="sec-copy">
+  <div class="section">
+    <div class="section__header">
+      <span class="section__num">03</span>
+      <h2 class="section__title">Fotocopy Digital & Percetakan</h2>
+    </div>
+
+    <div class="grid grid--1-2">
+      <div>
+        <div class="sidebar">
+          <div class="sidebar__title">Layanan Fotocopy</div>
+          <ul>
+            <li><strong>Hitam Putih</strong> — Rp 250/lembar</li>
+            <li><strong>Warna</strong> — Rp 1.500/lembar</li>
+            <li><strong>A3+</strong> — Rp 3.000/lembar</li>
+            <li><strong>Scan to PDF</strong> — Rp 500/dokumen</li>
+            <li><strong>Binding / Jilid</strong> — Rp 5.000–15.000</li>
+            <li><strong>Laminating</strong> — Rp 3.000/lembar</li>
+          </ul>
+        </div>
+
+        <div class="pull-quote" style="margin-top: 2rem;">
+          Dari skripsi mahasiswa hingga blueprint arsitek — semua bisa dicetak di hari yang sama.
+          <cite>— Garangan Fotocopy Division</cite>
+        </div>
+      </div>
+
+      <div>
+        <div class="article">
+          <div class="article__category">Layanan</div>
+          <h3 class="article__title"><a href="#">Percetakan On-Demand untuk Era Digital</a></h3>
+          <div class="img-wrap">
+            <img src="https://images.unsplash.com/photo-1562408590-e32931084e23?w=700&q=80" alt="Print shop" loading="lazy">
+          </div>
+          <p class="img-caption">Pusat produksi Garangan Store — mesin cetak digital berkecepatan tinggi untuk volume besar.</p>
+        </div>
+
+        <div class="col-text">
+          <p>Layanan fotocopy Garangan Store bukan sekadar tempat menyalin dokumen. Dengan peralatan cetak digital terbaru, kami mampu menangani segala kebutuhan percetakan — dari satu lembar hingga ribuan.</p>
+          <p>Untuk mahasiswa, kami menyediakan paket skripsi lengkap: cetak, jilid hardcover, dan laminasi sampul dengan harga spesial. Proses cepat, bisa ditunggu.</p>
+          <p>Bisnis dan UMKM dapat memanfaatkan layanan cetak marketing material: brosur, kartu nama, banner, hingga stiker custom. Semua bisa dipesan online melalui website Garangan dan dikirim ke lokasi Anda.</p>
+          <p>Yang membedakan Garangan adalah integrasi unik antara layanan fotocopy tradisional dengan teknologi 3D printing. Pelanggan bisa mencetak dokumen teknis sekaligus memesan prototipe 3D dari desain yang sama — satu atap, satu antrian.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">06</div>
+</div>
+
+<!-- ==================== PAGE 5: PRODUCTS ==================== -->
+<div class="page" id="sec-products">
+  <div class="section">
+    <div class="section__header">
+      <span class="section__num">04</span>
+      <h2 class="section__title">Katalog Produk</h2>
+    </div>
+
+    <!-- AD BANNER -->
+    <div class="ad-banner">
+      <span class="ad-banner__label">Iklan</span>
+      <div class="ad-banner__title">Garangan Store</div>
+      <div class="ad-banner__sub">3D Printing &nbsp;·&nbsp; Filament &nbsp;·&nbsp; Fotocopy &nbsp;—&nbsp; Satu Atap, Tanpa Batas</div>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-card__name">Creality K1 Max</div>
+        <div class="product-card__desc">Printer 3D high-speed, volume 300×300×300mm. Auto-leveling, AI camera.</div>
+        <div class="product-card__price">Rp 8.500.000</div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__name">Bambu Lab A1 Mini</div>
+        <div class="product-card__desc">Compact, multi-color capable. Plug & play untuk pemula.</div>
+        <div class="product-card__price">Rp 4.200.000</div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__name">Elegoo Saturn 4 Ultra</div>
+        <div class="product-card__desc">Resin printer 12K, volume 218×123×260mm. Untuk miniatur & jewelry.</div>
+        <div class="product-card__price">Rp 6.800.000</div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__name">Filamen PLA Premium 1kg</div>
+        <div class="product-card__desc">Tersedia 40+ warna. Toleransi ±0.02mm. Garansi tanpa knot.</div>
+        <div class="product-card__price">Rp 185.000</div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__name">Filamen PETG 1kg</div>
+        <div class="product-card__desc">Tahan bentuk & cuaca. Ideal untuk parts fungsional outdoor.</div>
+        <div class="product-card__price">Rp 220.000</div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__name">Dry Box Filamen</div>
+        <div class="product-card__desc">Penyimpanan kedap udara dengan silica gel & hygrometer.</div>
+        <div class="product-card__price">Rp 175.000</div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__name">Paket Skripsi Lengkap</div>
+        <div class="product-card__desc">Cetak + jilid hardcover + laminasi. Bisa ditunggu 2 jam.</div>
+        <div class="product-card__price">Rp 85.000</div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__name">Cetak Brosur A4 (100 lbr)</div>
+        <div class="product-card__desc">Full color, art paper 150gsm. Desain dibantu gratis.</div>
+        <div class="product-card__price">Rp 150.000</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">08</div>
+</div>
+
+<!-- ==================== PAGE 6: TUTORIAL ==================== -->
+<div class="page" id="sec-tutorial">
+  <div class="section">
+    <div class="section__header">
+      <span class="section__num">05</span>
+      <h2 class="section__title">Tutorial: Setup Printer 3D Pertama</h2>
+    </div>
+
+    <div class="grid grid--2-1">
+      <div>
+        <div class="col-text">
+          <p><strong>Langkah 1: Unboxing & Inspeksi.</strong> Periksa kelengkapan paket. Pastikan tidak ada kerusakan fisik pada frame, extruder, dan kabel. Garangan Store memberikan checklist khusus di setiap paket pembelian.</p>
+          <p><strong>Langkah 2: Perakitan.</strong> Sebagian besar printer modern sudah semi-terpasang. Ikuti panduan visual yang disertakan. Untuk model seperti Creality K1 Max, prosesnya kurang dari 15 menit.</p>
+          <p><strong>Langkah 3: Leveling.</strong> Printer dengan auto-leveling (seperti kebanyakan model yang dijual di Garangan) akan melakukan ini otomatis. Untuk manual, gunakan metode kertas — jarak nozzle ke bed sekitar 0.1mm.</p>
+          <p><strong>Langkah 4: Load Filament.</strong> Panaskan nozzle ke suhu yang sesuai (lihat label pada spool). Masukkan filamen hingga terasa tarikan dari extruder. Lakukan purge sepanjang 50mm sebelum mulai mencetak.</p>
+          <p><strong>Langkah 5: Cetak Pertama.</strong> Mulai dengan model test sederhana — benchy atau cube. Perhatikan lapisan pertama: harus rata, menempel kuat, dan tidak terlalu tipis. Ini kunci keberhasilan seluruh cetakan.</p>
+          <p><strong>Langkah 6: Kalibrasi Lanjutan.</strong> Setelah cetakan pertama berhasil, sesuaikan retraction, speed, dan cooling untuk hasil optimal. Komunitas Garangan menyediakan profil Cura/PrusaSlicer siap pakai untuk setiap printer yang dijual.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&q=80" alt="3D printing setup" loading="lazy">
+        </div>
+        <p class="img-caption">Setup benchy test print — standar industri untuk kalibrasi printer baru.</p>
+
+        <div class="sidebar" style="margin-top: 1.5rem;">
+          <div class="sidebar__title">Checklist Pemula</div>
+          <ul>
+            <li>✓ Printer terpasang dengan benar</li>
+            <li>✓ Bed leveling selesai</li>
+            <li>✓ Filament tersimpan kering</li>
+            <li>✓ Slicer terinstall (Cura / PrusaSlicer)</li>
+            <li>✓ Profil printer dari komunitas Garangan</li>
+            <li>✓ Benchy pertama berhasil cetak</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">10</div>
+</div>
+
+<!-- ==================== PAGE 7: COMMUNITY ==================== -->
+<div class="page" id="sec-community">
+  <div class="section">
+    <div class="section__header">
+      <span class="section__num">06</span>
+      <h2 class="section__title">Komunitas Maker Lokal</h2>
+    </div>
+
+    <div class="hero">
+      <h1 class="hero__headline" style="font-size: clamp(2.5rem, 5vw, 4.5rem);">Dari Garasi ke Galeri: Kisah Para Maker Indonesia</h1>
+      <p class="hero__deck">Komunitas Garangan bukan sekadar forum online — ini adalah jaringan kreator yang saling menginspirasi, berkolaborasi, dan bersama mendorong batas kemungkinan.</p>
+    </div>
+
+    <div class="grid grid--2">
+      <div class="article article--bordered">
+        <div class="article__category">Profil</div>
+        <h3 class="article__title"><a href="#">Andi dari Surabaya: Dari Hobi ke Bisnis</a></h3>
+        <div class="article__excerpt">
+          Bermula dari satu printer yang dibeli di Garangan Store, Andi kini mengelola farm 8 printer dan melayani pesanan custom dari seluruh Jawa Timur. "Komunitas Garangan mengajari saya segalanya — dari troubleshooting hingga pricing," katanya.
+        </div>
+        <div class="article__meta">Dibaca 4.200 kali</div>
+      </div>
+
+      <div class="article article--bordered">
+        <div class="article__category">Kolaborasi</div>
+        <h3 class="article__title"><a href="#">Project Open Source: Prosthetic Tangan untuk Anak</a></h3>
+        <div class="article__excerpt">
+          12 anggota komunitas Garangan berkolaborasi mencetak 50 prosthetic tangan untuk anak-anak yang membutuhkan. Semua file desain open source, semua material didonasikan. Ini kekuatan maker movement.
+        </div>
+        <div class="article__meta">Dibaca 8.700 kali</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="pull-quote">
+      Kami percaya teknologi harus accessible. Bukan hanya untuk yang mampu membeli, tapi untuk siapa saja yang ingin menciptakan.
+      <cite>— Garangan Community Manifesto</cite>
+    </div>
+
+    <!-- AD BANNER 2 -->
+    <div class="ad-banner" style="margin-top: 3rem;">
+      <span class="ad-banner__label">Iklan</span>
+      <div class="ad-banner__title">Gabung Komunitas Garangan</div>
+      <div class="ad-banner__sub">Gratis &nbsp;·&nbsp; Diskon Eksklusif &nbsp;·&nbsp; Workshop Bulanan &nbsp;·&nbsp; 2.000+ Maker Aktif</div>
+    </div>
+  </div>
+  <div class="page-num">12</div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer" id="footer">
+  <div class="footer__grid">
+    <div>
+      <div class="footer__col-title">Tentang Garangan Store</div>
+      <p>Garangan Store adalah destinasi utama untuk kebutuhan 3D printing, filamen premium, dan layanan fotocopy digital. Berdiri sejak 2019, kami melayani ribuan pelanggan dari berbagai kalangan — dari maker pemula hingga profesional industri.</p>
+      <p style="margin-top: 0.8rem;">Kami percaya bahwa teknologi pencetakan harus accessible, affordable, dan awesome.</p>
+    </div>
+    <div>
+      <div class="footer__col-title">Navigasi</div>
+      <ul>
+        <li><a href="#cover" style="color: var(--ink-light);">Beranda</a></li>
+        <li><a href="#sec-tech" style="color: var(--ink-light);">3D Printing</a></li>
+        <li><a href="#sec-filament" style="color: var(--ink-light);">Filamen</a></li>
+        <li><a href="#sec-copy" style="color: var(--ink-light);">Fotocopy</a></li>
+        <li><a href="#sec-products" style="color: var(--ink-light);">Produk</a></li>
+        <li><a href="#sec-community" style="color: var(--ink-light);">Komunitas</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title">Kontak</div>
+      <ul>
+        <li>📍 Jl. Teknologi No. 42, Jakarta</li>
+        <li>📞 +62 812-3456-7890</li>
+        <li>✉️ hello@garanganstore.id</li>
+        <li>🌐 garanganstore.id</li>
+        <li>📸 @garanganstore</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__legal">
+    <div>
+      <p>© 2026 Garangan Magazine. All rights reserved.</p>
+      <p>Published by Garangan Media Group. Printed on recycled paper with soy-based inks.</p>
+      <p>Unauthorized reproduction is prohibited. Dilarang memperbanyak tanpa izin.</p>
+    </div>
+    <div style="text-align: right;">
+      <div class="footer__issn">ISSN 2829-4713</div>
+      <p style="margin-top: 0.3rem;">Terbit setiap bulan</p>
+      <p>Dicetak di Indonesia</p>
+      <p style="margin-top: 0.5rem; font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;">
+        Vol. IX &nbsp;·&nbsp; No. 09 &nbsp;·&nbsp; September 2026
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- PWA INSTALL BANNER -->
+<div id="installBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10001;background:var(--ink);color:var(--paper);padding:1rem 1.5rem;font-size:0.8rem;letter-spacing:0.05em;font-family:'IBM Plex Mono',monospace;">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+    <span>📲 <strong>Tambahkan ke Layar Utama</strong> — Akses Garangan Store lebih cepat!</span>
+    <div style="display:flex;gap:0.5rem;">
+      <button onclick="installPWA()" style="background:var(--accent);color:var(--paper);border:none;padding:0.5rem 1.2rem;font-family:inherit;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;cursor:pointer;">INSTALL</button>
+      <button onclick="dismissInstall()" style="background:transparent;color:var(--rule);border:1px solid var(--rule);padding:0.5rem 1rem;font-family:inherit;font-size:0.7rem;cursor:pointer;">Nanti</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+// Service Worker Registration (PWA)
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
+
+// PWA Install Prompt
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installBanner').style.display = 'block';
+});
+
+function installPWA() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      document.getElementById('installBanner').style.display = 'none';
+    });
+  }
+}
+
+function dismissInstall() {
+  document.getElementById('installBanner').style.display = 'none';
+}
+
+window.addEventListener('appinstalled', () => {
+  document.getElementById('installBanner').style.display = 'none';
+  deferredPrompt = null;
+});
+
+// Scroll progress bar
+const progressBar = document.getElementById('progressBar');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (scrolled / total * 100) + '%';
+});
+
+// Page turn animation on scroll (IntersectionObserver)
+const pages = document.querySelectorAll('.page');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible', 'turn-in');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+pages.forEach(page => observer.observe(page));
+
+// Smooth scroll for TOC links
+document.querySelectorAll('.toc__item').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
