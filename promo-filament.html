@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Arial', sans-serif; background: #111; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+.poster {
+  width: 800px; height: 600px;
+  background: linear-gradient(160deg, #0d1b2a 0%, #1b2838 40%, #2d1b69 100%);
+  position: relative; overflow: hidden; padding: 50px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.poster::before {
+  content: ''; position: absolute; bottom: -100px; left: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255,100,0,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.poster::after {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0,200,255,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.top { z-index: 2; }
+.top h2 {
+  font-size: 16px; color: #ff6600; letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.top h1 {
+  font-size: 48px; color: white; font-weight: 900;
+  line-height: 1.05; text-transform: uppercase;
+}
+.top h1 span { color: #ff6600; }
+.mid {
+  z-index: 2; display: flex; gap: 25px; align-items: flex-end;
+}
+.spool {
+  width: 200px; text-align: center;
+}
+.spool-icon {
+  width: 140px; height: 140px; margin: 0 auto 15px;
+  border-radius: 50%; border: 4px solid;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 50px;
+}
+.spool.pla .spool-icon { border-color: #ff6600; background: rgba(255,102,0,0.1); }
+.spool.petg .spool-icon { border-color: #c0c0c0; background: rgba(192,192,192,0.1); }
+.spool.abs .spool-icon { border-color: #4488ff; background: rgba(68,136,255,0.1); }
+.spool-name { color: white; font-weight: 800; font-size: 18px; margin-bottom: 4px; }
+.spool-type { color: rgba(255,255,255,0.5); font-size: 12px; letter-spacing: 1px; }
+.spool-color { color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 4px; }
+.specs {
+  z-index: 2; display: flex; gap: 30px; margin-bottom: 10px;
+}
+.spec { display: flex; align-items: center; gap: 8px; }
+.spec-icon {
+  width: 32px; height: 32px; border-radius: 6px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.spec-text { color: rgba(255,255,255,0.7); font-size: 12px; }
+.spec-text strong { color: white; display: block; font-size: 14px; }
+.bottom {
+  z-index: 2; display: flex; justify-content: space-between; align-items: flex-end;
+}
+.sale {
+  background: #ff3333; color: white; padding: 15px 30px;
+  border-radius: 10px; text-align: center;
+}
+.sale-label { font-size: 12px; letter-spacing: 2px; opacity: 0.9; }
+.sale-value { font-size: 36px; font-weight: 900; }
+.shipping {
+  color: rgba(255,255,255,0.5); font-size: 12px; text-align: right;
+}
+.shipping strong { color: #00d4ff; font-size: 14px; display: block; }
+.logo {
+  position: absolute; bottom: 20px; left: 50%;
+  transform: translateX(-50%); z-index: 2;
+  color: rgba(255,255,255,0.15); font-size: 11px;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="top">
+    <h2>Koleksi Filamen Premium</h2>
+    <h1>FILAMEN<br><span>TERBAIK</span><br>UNTUK ANDA</h1>
+  </div>
+  <div class="mid">
+    <div class="spool pla">
+      <div class="spool-icon">🟠</div>
+      <div class="spool-name">PLA Pro</div>
+      <div class="spool-type">NEON ORANGE</div>
+      <div class="spool-color">Mudah dicetak · Presisi ±0.02mm</div>
+    </div>
+    <div class="spool petg">
+      <div class="spool-icon">⚪</div>
+      <div class="spool-name">PETG</div>
+      <div class="spool-type">METALLIC SILVER</div>
+      <div class="spool-color">Kekuatan industrial · Anti-lembab</div>
+    </div>
+    <div class="spool abs">
+      <div class="spool-icon">🔵</div>
+      <div class="spool-name">ABS Max</div>
+      <div class="spool-type">GALAXY BLUE</div>
+      <div class="spool-color">Tahan panas · Untuk outdoor</div>
+    </div>
+  </div>
+  <div class="specs">
+    <div class="spec"><div class="spec-icon">🌡️</div><div class="spec-text"><strong>260°C</strong>Tahan Suhu Tinggi</div></div>
+    <div class="spec"><div class="spec-icon">🎯</div><div class="spec-text"><strong>±0.02mm</strong>Presisi Diameter</div></div>
+    <div class="spec"><div class="spec-icon">♻️</div><div class="spec-text"><strong>ECO</strong>Material Ramah Lingkungan</div></div>
+  </div>
+  <div class="bottom">
+    <div class="sale">
+      <div class="sale-label">MEGA SALE</div>
+      <div class="sale-value">40% OFF</div>
+    </div>
+    <div class="shipping">
+      <strong>GRATIS ONGKIR</strong>
+      Order di atas Rp 500.000
+    </div>
+  </div>
+  <div class="logo">GARANGAN STORE — Dari Kertas Sampai 3D</div>
+</div>
+</body>
+</html>
