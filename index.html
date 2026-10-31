@@ -700,6 +700,72 @@ body::after {
   .masthead__issue { flex-direction: column; gap: 0.3rem; text-align: center; }
   .product-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* === v2 Sales Layer (31 Okt 2026) === */
+.product-card__cta {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 0.45rem 0.9rem;
+  background: #8b2500;
+  color: #f5f0e8;
+  text-decoration: none;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  border: 1px solid #8b2500;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.product-card__cta:hover, .product-card__cta:focus-visible {
+  background: #f5f0e8;
+  color: #8b2500;
+  outline: 2px solid #8b2500;
+  outline-offset: 2px;
+}
+.cover-cta {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1.4rem 0 0.4rem;
+}
+.cover-cta a {
+  padding: 0.7rem 1.5rem;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border: 1.5px solid #8b2500;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.cover-cta a.cover-cta__primary { background: #8b2500; color: #f5f0e8; }
+.cover-cta a.cover-cta__primary:hover { background: transparent; color: #8b2500; }
+.cover-cta a.cover-cta__ghost { color: #8b2500; }
+.cover-cta a.cover-cta__ghost:hover { background: #8b2500; color: #f5f0e8; }
+.order-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 90;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 0.65rem 1rem;
+  background: #1d1a17;
+  border-top: 2px solid #8b2500;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.82rem;
+}
+.order-bar a {
+  color: #f5f0e8;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid transparent;
+}
+.order-bar a:hover, .order-bar a:focus-visible { border-color: #8b2500; color: #e8b29a; outline: none; }
+body { padding-bottom: 3.2rem; }
+@media (prefers-reduced-motion: reduce) {
+  .product-card__cta, .cover-cta a, .order-bar a { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -720,7 +786,13 @@ body::after {
   </header>
 
   <!-- TABLE OF CONTENTS -->
-  <nav class="toc" id="toc">
+  
+    <div class="cover-cta">
+      <a class="cover-cta__primary" href="#sec-products">LIHAT KATALOG PRODUK</a>
+      <a class="cover-cta__ghost" href="tel:+628123023457">PESAN — 0812-3023-457</a>
+    </div>
+
+    <nav class="toc" id="toc">
     <div class="toc__title">Daftar Isi — Contents</div>
     <ol class="toc__list">
       <a href="#sec-tech" class="toc__item">
@@ -961,42 +1033,42 @@ body::after {
       <div class="product-card">
         <div class="product-card__name">Creality K1 Max</div>
         <div class="product-card__desc">Printer 3D high-speed, volume 300×300×300mm. Auto-leveling, AI camera.</div>
-        <div class="product-card__price">Rp 8.500.000</div>
+        <div class="product-card__price">Rp 8.500.000<a class="product-card__cta" href="tel:+628123023457" aria-label="Pesan Rp 8.500.000 via telepon">Pesan — 0812-3023-457</a></div>
       </div>
       <div class="product-card">
         <div class="product-card__name">Bambu Lab A1 Mini</div>
         <div class="product-card__desc">Compact, multi-color capable. Plug & play untuk pemula.</div>
-        <div class="product-card__price">Rp 4.200.000</div>
+        <div class="product-card__price">Rp 4.200.000<a class="product-card__cta" href="tel:+628123023457" aria-label="Pesan Rp 4.200.000 via telepon">Pesan — 0812-3023-457</a></div>
       </div>
       <div class="product-card">
         <div class="product-card__name">Elegoo Saturn 4 Ultra</div>
         <div class="product-card__desc">Resin printer 12K, volume 218×123×260mm. Untuk miniatur & jewelry.</div>
-        <div class="product-card__price">Rp 6.800.000</div>
+        <div class="product-card__price">Rp 6.800.000<a class="product-card__cta" href="tel:+628123023457" aria-label="Pesan Rp 6.800.000 via telepon">Pesan — 0812-3023-457</a></div>
       </div>
       <div class="product-card">
         <div class="product-card__name">Filamen PLA Premium 1kg</div>
         <div class="product-card__desc">Tersedia 40+ warna. Toleransi ±0.02mm. Garansi tanpa knot.</div>
-        <div class="product-card__price">Rp 185.000</div>
+        <div class="product-card__price">Rp 185.000<a class="product-card__cta" href="tel:+628123023457" aria-label="Pesan Rp 185.000 via telepon">Pesan — 0812-3023-457</a></div>
       </div>
       <div class="product-card">
         <div class="product-card__name">Filamen PETG 1kg</div>
         <div class="product-card__desc">Tahan bentuk & cuaca. Ideal untuk parts fungsional outdoor.</div>
-        <div class="product-card__price">Rp 220.000</div>
+        <div class="product-card__price">Rp 220.000<a class="product-card__cta" href="tel:+628123023457" aria-label="Pesan Rp 220.000 via telepon">Pesan — 0812-3023-457</a></div>
       </div>
       <div class="product-card">
         <div class="product-card__name">Dry Box Filamen</div>
         <div class="product-card__desc">Penyimpanan kedap udara dengan silica gel & hygrometer.</div>
-        <div class="product-card__price">Rp 175.000</div>
+        <div class="product-card__price">Rp 175.000<a class="product-card__cta" href="tel:+628123023457" aria-label="Pesan Rp 175.000 via telepon">Pesan — 0812-3023-457</a></div>
       </div>
       <div class="product-card">
         <div class="product-card__name">Paket Skripsi Lengkap</div>
         <div class="product-card__desc">Cetak + jilid hardcover + laminasi. Bisa ditunggu 2 jam.</div>
-        <div class="product-card__price">Rp 85.000</div>
+        <div class="product-card__price">Rp 85.000<a class="product-card__cta" href="tel:+628123023457" aria-label="Pesan Rp 85.000 via telepon">Pesan — 0812-3023-457</a></div>
       </div>
       <div class="product-card">
         <div class="product-card__name">Cetak Brosur A4 (100 lbr)</div>
         <div class="product-card__desc">Full color, art paper 150gsm. Desain dibantu gratis.</div>
-        <div class="product-card__price">Rp 150.000</div>
+        <div class="product-card__price">Rp 150.000<a class="product-card__cta" href="tel:+628123023457" aria-label="Pesan Rp 150.000 via telepon">Pesan — 0812-3023-457</a></div>
       </div>
     </div>
   </div>
@@ -1147,10 +1219,10 @@ body::after {
       <div class="footer__col-title">Kontak</div>
       <ul>
         <li>📍 Jl. Balong Sari Madya I, Darmo Indah, Surabaya</li>
-        <li>📞 0812-3023-457</li>
-        <li>✉️ hello@garanganstore.id</li>
-        <li>🌐 garanganstore.id</li>
-        <li>📸 @garanganstore</li>
+        <li>📞 <a href="tel:+628123023457">0812-3023-457</a></li>
+        <li>✉️ <a href="mailto:hello@garanganstore.id">hello@garanganstore.id</a></li>
+        <li>🌐 <a href="https://sukromenggolo12-dot.github.io/garangan-store/">garanganstore.id</a></li>
+        <li>📸 <a href="https://instagram.com/garanganstore">@garanganstore</a></li>
       </ul>
     </div>
   </div>
@@ -1248,5 +1320,12 @@ document.querySelectorAll('.toc__item').forEach(link => {
   });
 });
 </script>
+
+  <div class="order-bar" role="navigation" aria-label="Pesan cepat">
+    <a href="tel:+628123023457">📞 Telepon</a>
+    <a href="https://instagram.com/garanganstore">📸 DM Instagram</a>
+    <a href="mailto:hello@garanganstore.id">✉️ Email</a>
+    <a href="#sec-copy">🖨️ Fotocopy</a>
+  </div>
 </body>
 </html>
