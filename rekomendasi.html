@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rekomendasi Alat — Garangan Store</title>
+<meta name="description" content="Rekomendasi alat pilihan Garangan Store untuk maker, 3D printing, dan kebutuhan energi. Panduan belanja jujur dengan spesifikasi nyata.">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #f5f0e8;
+  color: #1d1a17;
+  line-height: 1.65;
+}
+.meta, .kicker, .card__cta, .disclosure, .back-link, footer {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+header {
+  border-bottom: 3px double #8b2500;
+  padding: 2.2rem 1.2rem 1.4rem;
+  text-align: center;
+}
+header .kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #8b2500;
+}
+header h1 {
+  font-size: clamp(1.9rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 0.5rem 0 0.3rem;
+}
+header .meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: #6b6157;
+  text-transform: uppercase;
+}
+main { max-width: 1080px; margin: 0 auto; padding: 1.6rem 1.2rem 4rem; }
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.4rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b2500;
+  text-decoration: none;
+  border-bottom: 1px solid #8b2500;
+  padding-bottom: 2px;
+}
+.intro {
+  font-size: 1.12rem;
+  max-width: 46rem;
+  margin-bottom: 1.6rem;
+}
+.disclosure {
+  font-size: 0.8rem;
+  background: #efe6d6;
+  border-left: 4px solid #8b2500;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 2.2rem;
+  letter-spacing: 0.02em;
+}
+section { margin-bottom: 2.6rem; }
+section h2 {
+  font-size: 1.55rem;
+  border-bottom: 2px solid #8b2500;
+  padding-bottom: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+section h2 .num {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.85rem;
+  color: #8b2500;
+  letter-spacing: 0.18em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.1rem;
+}
+.card {
+  background: #fffdf8;
+  border: 1px solid #d9cfc0;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+}
+.card__img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: contain;
+  background: #efe9dd;
+  margin-bottom: 0.9rem;
+}
+.card__name { font-weight: 700; font-size: 1.02rem; margin-bottom: 0.35rem; }
+.card__desc { font-size: 0.9rem; color: #4a4238; flex: 1; }
+.card__price {
+  font-family: ui-monospace, Menlo, monospace;
+  color: #8b2500;
+  font-weight: 700;
+  margin: 0.8rem 0;
+}
+.card__cta {
+  display: inline-block;
+  text-align: center;
+  padding: 0.55rem 0.9rem;
+  background: #8b2500;
+  color: #f5f0e8;
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  border: 1px solid #8b2500;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.card__cta:hover, .card__cta:focus-visible {
+  background: #fffdf8;
+  color: #8b2500;
+  outline: 2px solid #8b2500;
+  outline-offset: 2px;
+}
+.slot-note {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.72rem;
+  color: #8a7a66;
+  background: #f3ecdf;
+  border: 1px dashed #b8a588;
+  padding: 0.85rem;
+  margin-top: 0.4rem;
+}
+.howto {
+  background: #1d1a17;
+  color: #f5f0e8;
+  padding: 1.5rem;
+}
+.howto h2 { color: #f5f0e8; border-bottom-color: #e8b29a; }
+.howto ol { padding-left: 1.3rem; }
+.howto li { margin-bottom: 0.55rem; }
+.howto a { color: #e8b29a; }
+footer {
+  border-top: 3px double #8b2500;
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  color: #6b6157;
+}
+footer a { color: #8b2500; }
+@media (prefers-reduced-motion: reduce) { .card__cta { transition: none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">Garangan Store &mdash; Edisi Panduan Belanja</div>
+  <h1>Rekomendasi Alat</h1>
+  <div class="meta">Pilihan Jujur untuk Maker &middot; Spesifikasi Nyata &middot; Tanpa Drama</div>
+</header>
+
+<main>
+  <a class="back-link" href="index.html">&larr; Kembali ke Majalah</a>
+
+  <p class="intro">Halaman ini berisi alat yang kami rekomendasikan untuk kerja maker, 3D printing, dan kebutuhan energi. Spesifikasi dan harga dicantumkan apa adanya &mdash; tidak ada angka yang dikarang.</p>
+
+  <div class="disclosure">
+    <strong>Transparansi:</strong> beberapa tautan di halaman ini dapat berupa <em>tautan afiliasi</em>. Jika Anda membeli lewat tautan tersebut, kami mendapat komisi dari Shopee <strong>tanpa biaya tambahan untuk Anda</strong>. Rekomendasi tetap berdasarkan spesifikasi produk, bukan besaran komisi.
+  </div>
+
+  <section>
+    <h2><span class="num">01</span>Energi &amp; Power Supply</h2>
+    <div class="grid">
+      <div class="card">
+        <img class="card__img" src="photos/qualfull-green-energy.png" alt="Aki LiFePO4 QualFull Green Energy 12.8V 120AH">
+        <div class="card__name">Aki LiFePO4 QualFull Green Energy 12.8V 120AH</div>
+        <div class="card__desc">Baterai LiFePO4, siklus &gt;3000 cycle. Daya tahan lama, pengisian cepat, aman &amp; stabil. Sertifikasi UN38.3 &amp; CE.</div>
+        <div class="card__price">Rp 2.134.000</div>
+        <!-- TEMPATKAN LINK AFILIASI SHOPEE DI SINI (href di bawah) -->
+        <a class="card__cta" href="https://shopee.co.id/shop/275060141" target="_blank" rel="sponsored nofollow">Lihat di Shopee &rarr;</a>
+      </div>
+      <div class="card">
+        <img class="card__img" src="photos/poworth-liion-12v.png" alt="Baterai Lithium Poworth 12V 120.000 mAh">
+        <div class="card__name">Baterai Lithium Poworth 12V 120.000 mAh</div>
+        <div class="card__desc">Lithium-ion, high energy density, long cycle life. Sertifikasi FC, CE, RoHS. Kapasitas sesuai label produk.</div>
+        <div class="card__price">Rp 899.000</div>
+        <!-- TEMPATKAN LINK AFILIASI SHOPEE DI SINI -->
+        <a class="card__cta" href="https://shopee.co.id/shop/275060141" target="_blank" rel="sponsored nofollow">Lihat di Shopee &rarr;</a>
+      </div>
+      <div class="card">
+        <img class="card__img" src="photos/taffware-inverter-nbq1000w.png" alt="Taffware Power Inverter NBQ1000W">
+        <div class="card__name">Taffware Power Inverter NBQ1000W</div>
+        <div class="card__desc">Ubah DC ke AC 220V (Pure Sine Wave). Input 12V/24V/48V/60V. Proteksi overload, short circuit &amp; overheat, kipas otomatis.</div>
+        <div class="card__price">Rp 437.000</div>
+        <!-- TEMPATKAN LINK AFILIASI SHOPEE DI SINI -->
+        <a class="card__cta" href="https://shopee.co.id/shop/275060141" target="_blank" rel="sponsored nofollow">Lihat di Shopee &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>Maker &amp; Fabrication</h2>
+    <div class="grid">
+      <div class="card">
+        <img class="card__img" src="photos/daja-mini-laser-engraver.png" alt="DAJA Mini Laser Engraver 5W">
+        <div class="card__name">DAJA Mini Laser Engraver 5W</div>
+        <div class="card__desc">Laser 5W (Class 1), area 100&#215;100 mm, resolusi 0,01 mm, kecepatan &#8804;10.000 mm/menit. USB/WiFi. Untuk kayu, akrilik, kulit, MDF, kertas.</div>
+        <div class="card__price">Rp 2.029.000</div>
+        <!-- TEMPATKAN LINK AFILIASI SHOPEE DI SINI -->
+        <a class="card__cta" href="https://shopee.co.id/shop/275060141" target="_blank" rel="sponsored nofollow">Lihat di Shopee &rarr;</a>
+      </div>
+      <div class="card">
+        <img class="card__img" src="photos/petg-filament-blue.png" alt="Filamen PETG 1.75mm 1kg biru">
+        <div class="card__name">Filamen PETG 1,75 mm &mdash; 1 kg</div>
+        <div class="card__desc">Kuat &amp; tahan lama, tahan suhu hingga 80&deg;C, adhesi layer sangat baik, hasil cetak halus &amp; presisi.</div>
+        <div class="card__price">Hubungi untuk harga terbaru</div>
+        <!-- TEMPATKAN LINK AFILIASI SHOPEE DI SINI -->
+        <a class="card__cta" href="https://shopee.co.id/shop/275060141" target="_blank" rel="sponsored nofollow">Lihat di Shopee &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="slot-note">
+    SLOT KOSONG &mdash; kategori berikutnya (Printer 3D &amp; Aksesoris, Alat Fotocopy) akan diisi setelah tautan afiliasi aktif. Kirim link dari dashboard Shopee Affiliate untuk dipasang.
+  </div>
+
+  <section class="howto" style="margin-top:2.6rem;">
+    <h2><span class="num" style="color:#e8b29a;">INFO</span>Cara Kerja Tautan Afiliasi</h2>
+    <ol>
+      <li>Anda klik <strong>"Lihat di Shopee"</strong> &rarr; terbuka halaman produk di Shopee.</li>
+      <li>Harga <strong>sama persis</strong> dengan belanja langsung &mdash; tidak ada markup.</li>
+      <li>Shopee membayar komisi ke Garangan Store dari margin mereka sendiri.</li>
+      <li>Belanja Anda tetap terlindungi garansi &amp; kebijakan Shopee.</li>
+    </ol>
+  </section>
+</main>
+
+<footer>
+  GARANGAN STORE &middot;
+  <a href="index.html">Majalah</a> &middot;
+  <a href="https://shopee.co.id/shop/275060141" target="_blank" rel="noopener">Shopee: piccolo07</a> &middot;
+  <a href="tel:+628123023457">0812-3023-457</a>
+  <br><br>&copy; 2026 Garangan Store &mdash; Dari Kertas Sampai 3D
+</footer>
+
+</body>
+</html>
